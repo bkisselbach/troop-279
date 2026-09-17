@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troop 279 | Scouts BSA | Point of Rocks, MD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#1f2e22;
+    --pine-deep:#141f17;
+    --khaki:#cdbe98;
+    --blaze:#bf4c2c;
+    --cream:#f4efe3;
+    --ink:#2a271f;
+    --line: rgba(244,239,227,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    margin:0 0 .4em 0;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+
+  /* Topo line background used on dark sections */
+  .topo{
+    background-color:var(--pine);
+    background-image:
+      repeating-radial-gradient(circle at 15% 25%, transparent 0, transparent 34px, var(--line) 35px, transparent 36px),
+      repeating-radial-gradient(circle at 85% 70%, transparent 0, transparent 46px, var(--line) 47px, transparent 48px);
+    color:var(--cream);
+  }
+
+  header.topo{
+    padding:16px 0;
+    position:sticky;
+    top:0;
+    z-index:20;
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--blaze);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--cream);
+    flex-shrink:0;
+  }
+  .brand-text{font-size:15px;line-height:1.2;}
+  .brand-text strong{display:block;font-size:17px;letter-spacing:.01em;}
+  nav.links{display:flex;gap:22px;font-size:14.5px;flex-wrap:wrap;}
+  nav.links a{text-decoration:none;border-bottom:1px solid transparent;}
+  nav.links a:hover{border-bottom-color:var(--khaki);}
+  .btn{
+    display:inline-block;
+    background:var(--blaze);
+    color:var(--cream);
+    padding:10px 20px;
+    border-radius:3px;
+    text-decoration:none;
+    font-size:14.5px;
+    font-weight:500;
+    border:1px solid var(--blaze);
+  }
+  .btn:hover{background:#a8431f;border-color:#a8431f;}
+  .btn.ghost{
+    background:transparent;
+    border:1px solid var(--khaki);
+    color:var(--cream);
+  }
+  .btn.ghost:hover{background:rgba(205,190,152,.12);}
+
+  /* Hero */
+  .hero{padding:88px 0 96px;}
+  .hero .kicker{
+    color:var(--khaki);
+    font-size:14.5px;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,5vw,4rem);
+    max-width:14ch;
+    color:var(--cream);
+  }
+  .hero p.lede{
+    max-width:52ch;
+    font-size:1.15rem;
+    color:var(--khaki);
+    margin:22px 0 34px;
+  }
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero .meet-info{
+    margin-top:56px;
+    border-top:1px solid var(--line);
+    padding-top:22px;
+    display:flex;
+    gap:48px;
+    flex-wrap:wrap;
+    font-size:14.5px;
+  }
+  .hero .meet-info div span{display:block;color:var(--khaki);font-size:12.5px;margin-bottom:4px;}
+
+  /* Stats */
+  .stats{
+    background:var(--cream);
+    padding:64px 0;
+  }
+  .stats .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:36px;
+  }
+  .stat .num{
+    font-family:'Fraunces',serif;
+    font-size:3rem;
+    font-weight:700;
+    color:var(--blaze);
+    line-height:1;
+  }
+  .stat .label{margin-top:10px;font-size:14.5px;max-width:26ch;}
+
+  /* About */
+  .about{padding:20px 0 72px;}
+  .about .cols{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:56px;
+  }
+  .about h2{font-size:2rem;}
+  .about p{max-width:58ch;}
+  .about ul{padding-left:18px;max-width:52ch;}
+  .about li{margin-bottom:8px;}
+  .divider{
+    height:1px;
+    background:linear-gradient(to right, transparent, var(--ink), transparent);
+    opacity:.15;
+    margin:0 0 60px;
+  }
+
+  /* Program cards */
+  .programs{padding:0 0 80px;}
+  .programs .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:2px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+  }
+  .programs .card{
+    background:var(--cream);
+    padding:28px 24px;
+  }
+  .programs .card h3{font-size:1.15rem;}
+  .programs .card p{font-size:14.5px;margin:0;}
+
+  /* Join / info strip */
+  .strip.topo{padding:64px 0;}
+  .strip .cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .strip h2{color:var(--cream);font-size:1.9rem;}
+  .strip p{color:var(--khaki);max-width:44ch;}
+  .strip .btn{margin-top:18px;}
+
+  /* Contact */
+  .contact{padding:72px 0 90px;}
+  .contact .cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+  }
+  .contact h2{font-size:2rem;}
+  .contact dl{margin:26px 0 0;}
+  .contact dt{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#7a7462;margin-top:18px;}
+  .contact dt:first-child{margin-top:0;}
+  .contact dd{margin:4px 0 0;font-size:1.05rem;}
+  .contact a{text-decoration:underline;text-decoration-color:var(--khaki);text-underline-offset:3px;}
+
+  form.note-form{
+    background:#fff;
+    border:1px solid rgba(0,0,0,.08);
+    padding:26px;
+    border-radius:4px;
+  }
+  form.note-form label{display:block;font-size:13px;margin-bottom:6px;color:#5c5848;}
+  form.note-form input,form.note-form textarea{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid rgba(0,0,0,.15);
+    border-radius:3px;
+    font-family:inherit;
+    font-size:14.5px;
+    margin-bottom:16px;
+    background:var(--cream);
+  }
+  form.note-form textarea{min-height:100px;resize:vertical;}
+  form.note-form .fine{font-size:12.5px;color:#7a7462;margin-top:-4px;}
+
+  footer.topo{padding:30px 0;font-size:13px;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--khaki);}
+
+  @media (max-width:760px){
+    .about .cols, .strip .cols, .contact .cols{grid-template-columns:1fr;}
+    nav.links{order:3;width:100%;justify-content:flex-start;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="brand-mark">279</div>
+      <div class="brand-text">
+        <strong>Troop 279</strong>
+        Point of Rocks, MD &middot; est. 1953
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#join">Join</a>
+      <a href="#contact">Contact</a>
+      <a href="https://scoutbook.scouting.org/" target="_blank" rel="noopener">Scoutbook</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero topo">
+  <div class="wrap">
+    <div class="kicker">Scouts BSA &middot; Francis Scott Key District</div>
+    <h1>Escape the indoors.</h1>
+    <p class="lede">Troop 279 has been giving kids in Point of Rocks a reason to get outside since 1953 &mdash; hiking, camping, canoeing, and building the kind of confidence that only comes from doing hard things with your friends.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://my.scouting.org/online-registration/701a2e19-13d5-4c25-88bf-4cfc87e977d7/applicant-type" target="_blank" rel="noopener">Join Troop 279</a>
+      <a class="btn ghost" href="#contact">Ask a question</a>
+    </div>
+    <div class="meet-info">
+      <div><span>Meets</span>Wednesdays, 7:00&nbsp;pm</div>
+      <div><span>Where</span>Edward F. Fry Memorial Library, Point of Rocks Community Center</div>
+      <div><span>Address</span>1635 Ballenger Creek Pike, Point of Rocks, MD 21777</div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap grid">
+    <div class="stat">
+      <div class="num">75%</div>
+      <div class="label">of our Scouts reach Eagle Scout, versus roughly 4&ndash;5% nationally.</div>
+    </div>
+    <div class="stat">
+      <div class="num">1953</div>
+      <div class="label">Chartered by the Point of Rocks Ruritan Club, continuously since 1954.</div>
+    </div>
+    <div class="stat">
+      <div class="num">5</div>
+      <div class="label">Youth leadership roles open to Scouts: SPL, ASPL, Patrol Leader, APL, and Quartermaster.</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="divider"></div>
+    <div class="cols">
+      <div>
+        <h2>What Scouts actually do here</h2>
+        <p>Scouts BSA is the traditional Scouting program: youth-planned outdoor activities, real responsibility, and merit badges earned along the way &mdash; not handed out. Scouts explore hiking, camping, and canoeing while working toward Scouting's highest rank, Eagle Scout.</p>
+        <p>Boys who stick with the troop past three years are far more likely to make Eagle, which is exactly why we build a program worth sticking around for.</p>
+      </div>
+      <div>
+        <h2>Leadership counts</h2>
+        <ul>
+          <li>Senior Patrol Leader</li>
+          <li>Assistant Senior Patrol Leader</li>
+          <li>Patrol Leader</li>
+          <li>Assistant Patrol Leader</li>
+          <li>Quartermaster</li>
+        </ul>
+        <p>Every Scout gets a real shot at running things &mdash; the adults are there to advise, not to lead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="grid">
+      <div class="card">
+        <h3>Outdoor skills</h3>
+        <p>Canoe trails, hiking, and challenges Scouts first thought were beyond them. There's no better teacher than the outdoors.</p>
+      </div>
+      <div class="card">
+        <h3>Service &amp; growth</h3>
+        <p>Scouting channels the physical and emotional growth of these years into service projects and real community engagement.</p>
+      </div>
+      <div class="card">
+        <h3>Timeless values</h3>
+        <p>The Scout Oath and Scout Law build academic skills, self-confidence, ethics, and citizenship that carry into adulthood.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="strip topo" id="join">
+  <div class="wrap cols">
+    <div>
+      <h2>New to Scouting? Come to a Wednesday.</h2>
+      <p>No experience required. Show up at 7:00&nbsp;pm at the Point of Rocks Community Center and meet the troop before you commit to anything.</p>
+    </div>
+    <div>
+      <h2>Ready to register?</h2>
+      <p>Online registration takes a few minutes through the official BSA site.</p>
+      <a class="btn" href="https://my.scouting.org/online-registration/701a2e19-13d5-4c25-88bf-4cfc87e977d7/applicant-type" target="_blank" rel="noopener">Join Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap cols">
+    <div>
+      <h2>Get in touch</h2>
+      <p>Questions about visiting, registering, or getting involved? Reach out any time.</p>
+      <dl>
+        <dt>Email</dt>
+        <dd><a href="mailto:portroop279@gmail.com">portroop279@gmail.com</a></dd>
+        <dt>Meets</dt>
+        <dd>Wednesdays, 7:00&nbsp;pm</dd>
+        <dt>Location</dt>
+        <dd>Edward F. Fry Memorial Library<br>1635 Ballenger Creek Pike, Point of Rocks, MD 21777</dd>
+        <dt>Scoutbook</dt>
+        <dd><a href="https://scoutbook.scouting.org/" target="_blank" rel="noopener">scoutbook.scouting.org</a></dd>
+      </dl>
+    </div>
+    <form class="note-form" onsubmit="handleSubmit(event)">
+      <label for="name">Name</label>
+      <input id="name" type="text" required>
+      <label for="email">Email</label>
+      <input id="email" type="email" required>
+      <label for="message">Message</label>
+      <textarea id="message" required></textarea>
+      <p class="fine" id="form-note">This form doesn't send automatically &mdash; it opens your email client addressed to the troop.</p>
+      <button class="btn" type="submit" style="border:none;cursor:pointer;">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer class="topo">
+  <div class="wrap">
+    <span>&copy; 2026 Troop 279, Scouts BSA &middot; Point of Rocks, MD</span>
+    <span>Chartered by the Point of Rocks Ruritan Club</span>
+  </div>
+</footer>
+
+<script>
+  function handleSubmit(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    var subject = encodeURIComponent('Message from ' + name + ' via troop website');
+    var body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+    window.location.href = 'mailto:portroop279@gmail.com?subject=' + subject + '&body=' + body;
+  }
+</script>
+
+</body>
+</html>
