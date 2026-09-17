@@ -374,6 +374,8 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
   }
+
+  .hidden{display:none !important;}
 </style>
 </head>
 <body>
@@ -392,7 +394,7 @@
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
       <a href="#gallery">Gallery</a>
-      <a href="#wreaths">Wreaths</a>
+      <a href="#wreaths" class="hidden">Wreaths</a>
       <a href="#join">Join</a>
       <a href="#contact">Contact</a>
       <a href="https://scoutbook.scouting.org/" target="_blank" rel="noopener">Scoutbook</a>
@@ -523,7 +525,7 @@
   </div>
 </section>
 
-<section class="wreaths" id="wreaths">
+<section class="wreaths hidden" id="wreaths">
   <div class="wrap">
     <div class="divider"></div>
     <h2>Annual wreath fundraiser</h2>
