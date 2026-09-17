@@ -63,9 +63,20 @@
   }
   .brand-text{font-size:15px;line-height:1.2;}
   .brand-text strong{display:block;font-size:17px;letter-spacing:.01em;}
-  nav.links{display:flex;gap:22px;font-size:14.5px;flex-wrap:wrap;}
+  nav.links{display:flex;gap:22px;font-size:14.5px;flex-wrap:wrap;align-items:center;}
   nav.links a{text-decoration:none;border-bottom:1px solid transparent;}
   nav.links a:hover{border-bottom-color:var(--khaki);}
+  .nav-toggle{
+    display:none;
+    background:transparent;
+    border:1px solid var(--khaki);
+    color:var(--cream);
+    width:38px;height:38px;
+    border-radius:3px;
+    font-size:18px;
+    line-height:1;
+    cursor:pointer;
+  }
   .btn{
     display:inline-block;
     background:var(--blaze);
@@ -134,6 +145,40 @@
   }
   .stat .label{margin-top:10px;font-size:14.5px;max-width:26ch;}
 
+  /* Photo strip */
+  .photo-strip{padding:0 0 64px;}
+  .photo-strip .row{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+  }
+  .photo-strip .row a{
+    display:block;
+    aspect-ratio:3/4;
+    overflow:hidden;
+    border-radius:4px;
+  }
+  .photo-strip .row img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform .25s ease;
+  }
+  .photo-strip .row a:hover img{transform:scale(1.06);}
+  .photo-strip .row a.more{
+    background:var(--pine);
+    color:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:13.5px;
+    padding:12px;
+  }
+  @media (max-width:760px){
+    .photo-strip .row{grid-template-columns:repeat(3,1fr);}
+    .photo-strip .row a:nth-child(3),.photo-strip .row a:nth-child(4){display:none;}
+  }
+
   /* About */
   .about{padding:20px 0 72px;}
   .about .cols{
@@ -189,6 +234,70 @@
   }
   .gallery .grid a:hover img{transform:scale(1.05);}
 
+  /* Lightbox */
+  .lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(20,31,23,.92);
+    z-index:50;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{
+    max-width:100%;
+    max-height:88vh;
+    margin:0 auto;
+    border-radius:4px;
+  }
+  .lightbox .lb-close,.lightbox .lb-nav{
+    position:fixed;
+    background:transparent;
+    border:1px solid var(--khaki);
+    color:var(--cream);
+    border-radius:3px;
+    cursor:pointer;
+    font-size:20px;
+    line-height:1;
+  }
+  .lightbox .lb-close{top:20px;right:20px;width:42px;height:42px;}
+  .lightbox .lb-nav{top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:24px;}
+  .lightbox .lb-prev{left:20px;}
+  .lightbox .lb-next{right:20px;}
+  .lightbox .lb-close:hover,.lightbox .lb-nav:hover{background:rgba(205,190,152,.15);}
+  @media (max-width:600px){
+    .lightbox .lb-nav{width:40px;height:40px;font-size:20px;}
+    .lightbox .lb-prev{left:8px;}
+    .lightbox .lb-next{right:8px;}
+  }
+
+  /* Wreaths */
+  .wreaths{padding:0 0 80px;}
+  .wreaths .intro{max-width:60ch;}
+  .wreaths .price-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:2px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+    margin:28px 0 24px;
+  }
+  .wreaths .price-card{
+    background:var(--cream);
+    padding:24px;
+  }
+  .wreaths .price-card .size{font-size:14.5px;color:#7a7462;}
+  .wreaths .price-card .price{
+    font-family:'Fraunces',serif;
+    font-size:2rem;
+    font-weight:700;
+    color:var(--blaze);
+    margin-top:4px;
+  }
+  .wreaths .fine{font-size:13px;color:#7a7462;max-width:60ch;}
+
   /* Join / info strip */
   .strip.topo{padding:64px 0;}
   .strip .cols{
@@ -239,7 +348,19 @@
 
   @media (max-width:760px){
     .about .cols, .strip .cols, .contact .cols{grid-template-columns:1fr;}
-    nav.links{order:3;width:100%;justify-content:flex-start;}
+    .nav-toggle{display:block;}
+    nav.links{
+      display:none;
+      order:3;
+      width:100%;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:14px;
+      padding-top:16px;
+      margin-top:8px;
+      border-top:1px solid var(--line);
+    }
+    nav.links.open{display:flex;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -258,10 +379,12 @@
         Point of Rocks, MD &middot; est. 1953
       </div>
     </div>
-    <nav class="links">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+    <nav class="links" id="nav-links">
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
       <a href="#gallery">Gallery</a>
+      <a href="#wreaths">Wreaths</a>
       <a href="#join">Join</a>
       <a href="#contact">Contact</a>
       <a href="https://scoutbook.scouting.org/" target="_blank" rel="noopener">Scoutbook</a>
@@ -279,9 +402,10 @@
       <a class="btn ghost" href="#contact">Ask a question</a>
     </div>
     <div class="meet-info">
-      <div><span>Meets</span>Wednesdays, 7:00&nbsp;pm</div>
+      <div><span>Meets</span>Wednesdays, 7:00&ndash;8:30&nbsp;pm</div>
       <div><span>Where</span>Edward F. Fry Memorial Library, Point of Rocks Community Center</div>
       <div><span>Address</span>1635 Ballenger Creek Pike, Point of Rocks, MD 21777</div>
+      <div><span>Leadership</span>PLC &amp; Committee, 1st&nbsp;Wed&nbsp;monthly, 7:15&nbsp;pm</div>
     </div>
   </div>
 </section>
@@ -300,6 +424,16 @@
       <div class="num">5</div>
       <div class="label">Youth leadership roles open to Scouts: SPL, ASPL, Patrol Leader, APL, and Quartermaster.</div>
     </div>
+  </div>
+</section>
+
+<section class="photo-strip">
+  <div class="wrap row">
+    <a href="#gallery"><img src="photos/gallery-03-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA outing photo" loading="lazy"></a>
+    <a href="#gallery"><img src="photos/gallery-08-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA outing photo" loading="lazy"></a>
+    <a href="#gallery"><img src="photos/gallery-14-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA outing photo" loading="lazy"></a>
+    <a href="#gallery"><img src="photos/gallery-21-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA outing photo" loading="lazy"></a>
+    <a href="#gallery" class="more">See the full gallery &rarr;</a>
   </div>
 </section>
 
@@ -349,36 +483,63 @@
 <section class="gallery" id="gallery">
   <div class="wrap">
     <div class="grid">
-      <a href="photos/gallery-01.jpg" target="_blank" rel="noopener"><img src="photos/gallery-01.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-02.jpg" target="_blank" rel="noopener"><img src="photos/gallery-02.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-03.jpg" target="_blank" rel="noopener"><img src="photos/gallery-03.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-04.jpg" target="_blank" rel="noopener"><img src="photos/gallery-04.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-05.jpg" target="_blank" rel="noopener"><img src="photos/gallery-05.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-06.jpg" target="_blank" rel="noopener"><img src="photos/gallery-06.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-07.jpg" target="_blank" rel="noopener"><img src="photos/gallery-07.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-08.jpg" target="_blank" rel="noopener"><img src="photos/gallery-08.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-09.jpg" target="_blank" rel="noopener"><img src="photos/gallery-09.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-10.jpg" target="_blank" rel="noopener"><img src="photos/gallery-10.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-11.jpg" target="_blank" rel="noopener"><img src="photos/gallery-11.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-12.jpg" target="_blank" rel="noopener"><img src="photos/gallery-12.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-13.jpg" target="_blank" rel="noopener"><img src="photos/gallery-13.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-14.jpg" target="_blank" rel="noopener"><img src="photos/gallery-14.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-15.jpg" target="_blank" rel="noopener"><img src="photos/gallery-15.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-16.jpg" target="_blank" rel="noopener"><img src="photos/gallery-16.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-17.jpg" target="_blank" rel="noopener"><img src="photos/gallery-17.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-18.jpg" target="_blank" rel="noopener"><img src="photos/gallery-18.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-19.jpg" target="_blank" rel="noopener"><img src="photos/gallery-19.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-20.jpg" target="_blank" rel="noopener"><img src="photos/gallery-20.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-21.jpg" target="_blank" rel="noopener"><img src="photos/gallery-21.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-22.jpg" target="_blank" rel="noopener"><img src="photos/gallery-22.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-23.jpg" target="_blank" rel="noopener"><img src="photos/gallery-23.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-24.jpg" target="_blank" rel="noopener"><img src="photos/gallery-24.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-25.jpg" target="_blank" rel="noopener"><img src="photos/gallery-25.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-26.jpg" target="_blank" rel="noopener"><img src="photos/gallery-26.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-27.jpg" target="_blank" rel="noopener"><img src="photos/gallery-27.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-      <a href="photos/gallery-28.jpg" target="_blank" rel="noopener"><img src="photos/gallery-28.jpg" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
-
+      <a href="photos/gallery-01-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-01-full.jpg"><img src="photos/gallery-01-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-02-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-02-full.jpg"><img src="photos/gallery-02-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-03-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-03-full.jpg"><img src="photos/gallery-03-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-04-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-04-full.jpg"><img src="photos/gallery-04-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-05-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-05-full.jpg"><img src="photos/gallery-05-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-06-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-06-full.jpg"><img src="photos/gallery-06-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-07-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-07-full.jpg"><img src="photos/gallery-07-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-08-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-08-full.jpg"><img src="photos/gallery-08-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-09-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-09-full.jpg"><img src="photos/gallery-09-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-10-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-10-full.jpg"><img src="photos/gallery-10-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-11-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-11-full.jpg"><img src="photos/gallery-11-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-12-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-12-full.jpg"><img src="photos/gallery-12-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-13-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-13-full.jpg"><img src="photos/gallery-13-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-14-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-14-full.jpg"><img src="photos/gallery-14-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-15-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-15-full.jpg"><img src="photos/gallery-15-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-16-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-16-full.jpg"><img src="photos/gallery-16-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-17-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-17-full.jpg"><img src="photos/gallery-17-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-18-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-18-full.jpg"><img src="photos/gallery-18-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-19-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-19-full.jpg"><img src="photos/gallery-19-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-20-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-20-full.jpg"><img src="photos/gallery-20-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-21-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-21-full.jpg"><img src="photos/gallery-21-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-22-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-22-full.jpg"><img src="photos/gallery-22-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-23-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-23-full.jpg"><img src="photos/gallery-23-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-24-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-24-full.jpg"><img src="photos/gallery-24-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-25-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-25-full.jpg"><img src="photos/gallery-25-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-26-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-26-full.jpg"><img src="photos/gallery-26-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-27-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-27-full.jpg"><img src="photos/gallery-27-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
+      <a href="photos/gallery-28-full.jpg" target="_blank" rel="noopener" class="gallery-item" data-full="photos/gallery-28-full.jpg"><img src="photos/gallery-28-thumb.jpg" width="500" height="375" alt="Troop 279 Scouts BSA activity photo" loading="lazy"></a>
     </div>
+  </div>
+</section>
+
+<section class="wreaths" id="wreaths">
+  <div class="wrap">
+    <div class="divider"></div>
+    <h2>Annual wreath fundraiser</h2>
+    <p class="intro">Every fall Troop 279 sells fresh Fraser fir wreaths &mdash; proceeds go straight toward camping trips, gear, and program costs for our Scouts.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="size">22&Prime; decorated</div>
+        <div class="price">$45</div>
+      </div>
+      <div class="price-card">
+        <div class="size">16&Prime; decorated</div>
+        <div class="price">$40</div>
+      </div>
+      <div class="price-card">
+        <div class="size">22&Prime; plain</div>
+        <div class="price">$35</div>
+      </div>
+      <div class="price-card">
+        <div class="size">16&Prime; plain</div>
+        <div class="price">$30</div>
+      </div>
+    </div>
+    <p class="fine">Prices reflect our most recent sale and availability varies by year &mdash; email us to check current stock and place an order.</p>
+    <a class="btn" href="mailto:portroop279@gmail.com?subject=Wreath%20order">Order a wreath</a>
   </div>
 </section>
 
@@ -386,7 +547,7 @@
   <div class="wrap cols">
     <div>
       <h2>New to Scouting? Come to a Wednesday.</h2>
-      <p>No experience required. Show up at 7:00&nbsp;pm at the Point of Rocks Community Center and meet the troop before you commit to anything.</p>
+      <p>No experience required. Show up at 7:00&nbsp;pm on a Wednesday at the Point of Rocks Community Center and meet the troop before you commit to anything.</p>
     </div>
     <div>
       <h2>Ready to register?</h2>
@@ -405,9 +566,11 @@
         <dt>Email</dt>
         <dd><a href="mailto:portroop279@gmail.com">portroop279@gmail.com</a></dd>
         <dt>Meets</dt>
-        <dd>Wednesdays, 7:00&nbsp;pm</dd>
+        <dd>Wednesdays, 7:00&ndash;8:30&nbsp;pm</dd>
         <dt>Location</dt>
         <dd>Edward F. Fry Memorial Library<br>1635 Ballenger Creek Pike, Point of Rocks, MD 21777</dd>
+        <dt>Calendar</dt>
+        <dd>Camping trips and outings are tracked in Scoutbook &mdash; sync the troop calendar to your phone via the ICS link there.</dd>
         <dt>Scoutbook</dt>
         <dd><a href="https://scoutbook.scouting.org/" target="_blank" rel="noopener">scoutbook.scouting.org</a></dd>
       </dl>
@@ -424,6 +587,13 @@
     </form>
   </div>
 </section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous photo">&#8249;</button>
+  <img id="lb-img" src="" alt="Troop 279 Scouts BSA activity photo">
+  <button class="lb-nav lb-next" id="lb-next" aria-label="Next photo">&#8250;</button>
+</div>
 
 <footer class="topo">
   <div class="wrap">
@@ -442,6 +612,57 @@
     var body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
     window.location.href = 'mailto:portroop279@gmail.com?subject=' + subject + '&body=' + body;
   }
+
+  var navToggle = document.getElementById('nav-toggle');
+  var navLinks = document.getElementById('nav-links');
+  navToggle.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  var galleryItems = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var currentIndex = 0;
+
+  function openLightbox(index){
+    currentIndex = index;
+    lbImg.src = galleryItems[currentIndex].dataset.full;
+    lightbox.classList.add('open');
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lbImg.src = '';
+  }
+  function showDelta(delta){
+    currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
+    lbImg.src = galleryItems[currentIndex].dataset.full;
+  }
+
+  galleryItems.forEach(function(item, index){
+    item.addEventListener('click', function(e){
+      e.preventDefault();
+      openLightbox(index);
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', function(){ showDelta(-1); });
+  document.getElementById('lb-next').addEventListener('click', function(){ showDelta(1); });
+  lightbox.addEventListener('click', function(e){
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showDelta(-1);
+    if (e.key === 'ArrowRight') showDelta(1);
+  });
 </script>
 
 </body>
