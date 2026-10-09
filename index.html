@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Troop 279 | Scouts BSA | Point of Rocks, MD</title>
+<meta name="description" content="Troop 279 is a Scouts BSA troop in Point of Rocks, MD, meeting Wednesdays at 7:00 pm. Hiking, camping, canoeing, and leadership since 1953.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Troop 279 | Scouts BSA | Point of Rocks, MD">
+<meta property="og:description" content="Hiking, camping, canoeing, and leadership since 1953. Come to a Wednesday meeting and meet the troop.">
+<meta name="theme-color" content="#141f17">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23bf4c2c'/%3E%3Ctext x='16' y='21' font-size='13' font-weight='700' text-anchor='middle' fill='%23f4efe3' font-family='serif'%3E279%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -296,7 +302,7 @@
     background:var(--cream);
     padding:24px;
   }
-  .wreaths .price-card .size{font-size:14.5px;color:#7a7462;}
+  .wreaths .price-card .size{font-size:14.5px;color:#655f4e;}
   .wreaths .price-card .price{
     font-family:'Fraunces',serif;
     font-size:2rem;
@@ -304,7 +310,7 @@
     color:var(--blaze);
     margin-top:4px;
   }
-  .wreaths .fine{font-size:13px;color:#7a7462;max-width:60ch;}
+  .wreaths .fine{font-size:13px;color:#655f4e;max-width:60ch;}
 
   /* Join / info strip */
   .strip.topo{padding:64px 0;}
@@ -326,7 +332,7 @@
   }
   .contact h2{font-size:2rem;}
   .contact dl{margin:26px 0 0;}
-  .contact dt{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#7a7462;margin-top:18px;}
+  .contact dt{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#655f4e;margin-top:18px;}
   .contact dt:first-child{margin-top:0;}
   .contact dd{margin:4px 0 0;font-size:1.05rem;}
   .contact a{text-decoration:underline;text-decoration-color:var(--khaki);text-underline-offset:3px;}
@@ -349,7 +355,7 @@
     background:var(--cream);
   }
   form.note-form textarea{min-height:100px;resize:vertical;}
-  form.note-form .fine{font-size:12.5px;color:#7a7462;margin-top:-4px;}
+  form.note-form .fine{font-size:12.5px;color:#655f4e;margin-top:-4px;}
 
   footer.topo{padding:30px 0;font-size:13px;}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--khaki);}
@@ -454,7 +460,7 @@
       <div>
         <h2>What Scouts actually do here</h2>
         <p>Scouts BSA is the traditional Scouting program: youth-planned outdoor activities, real responsibility, and merit badges earned along the way &mdash; not handed out. Scouts explore hiking, camping, and canoeing while working toward Scouting's highest rank, Eagle Scout.</p>
-        <p>Boys who stick with the troop past three years are far more likely to make Eagle, which is exactly why we build a program worth sticking around for.</p>
+        <p>Scouts who stick with the troop past three years are far more likely to make Eagle, which is exactly why we build a program worth sticking around for.</p>
       </div>
       <div>
         <h2>Leadership counts</h2>
@@ -641,14 +647,20 @@
   var lbImg = document.getElementById('lb-img');
   var currentIndex = 0;
 
+  var lastFocus = null;
+  var lbButtons = [document.getElementById('lb-close'), document.getElementById('lb-prev'), document.getElementById('lb-next')];
+
   function openLightbox(index){
     currentIndex = index;
+    lastFocus = document.activeElement;
     lbImg.src = galleryItems[currentIndex].dataset.full;
     lightbox.classList.add('open');
+    document.getElementById('lb-close').focus();
   }
   function closeLightbox(){
     lightbox.classList.remove('open');
-    lbImg.src = '';
+    lbImg.removeAttribute('src');
+    if (lastFocus) lastFocus.focus();
   }
   function showDelta(delta){
     currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
@@ -672,6 +684,12 @@
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') showDelta(-1);
     if (e.key === 'ArrowRight') showDelta(1);
+    if (e.key === 'Tab') {
+      var i = lbButtons.indexOf(document.activeElement);
+      var next = e.shiftKey ? (i <= 0 ? lbButtons.length - 1 : i - 1) : (i + 1) % lbButtons.length;
+      e.preventDefault();
+      lbButtons[next].focus();
+    }
   });
 </script>
 
