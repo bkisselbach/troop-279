@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | Troop 279 | Point of Rocks, MD</title>
+<meta name="description" content="Contact Troop 279 in Point of Rocks, MD: email, meeting times, and location.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact | Troop 279 | Point of Rocks, MD">
+<meta property="og:description" content="Contact Troop 279 in Point of Rocks, MD: email, meeting times, and location.">
+<meta name="theme-color" content="#141f17">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23bf4c2c'/%3E%3Ctext x='16' y='21' font-size='13' font-weight='700' text-anchor='middle' fill='%23f4efe3' font-family='serif'%3E279%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap nav">
+    <a class="brand" href="../">
+      <div class="brand-mark">279</div>
+      <div class="brand-text">
+        <strong>Troop 279</strong>
+        Point of Rocks, MD &middot; est. 1953
+      </div>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+    <nav class="links" id="nav-links">
+      <a href="../about/">About</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../wreaths/">Wreaths</a>
+      <a href="../join/">Join</a>
+      <a href="../contact/" aria-current="page">Contact</a>
+      <a href="https://scoutbook.scouting.org/" target="_blank" rel="noopener">Scoutbook</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="wrap">
+    <h1>Get in touch</h1>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap cols">
+    <div>
+      <p>Questions about visiting, registering, or getting involved? Reach out any time.</p>
+      <dl>
+        <dt>Email</dt>
+        <dd><a href="mailto:portroop279@gmail.com">portroop279@gmail.com</a></dd>
+        <dt>Meets</dt>
+        <dd>Wednesdays, 7:00&ndash;8:30&nbsp;pm</dd>
+        <dt>Location</dt>
+        <dd>Edward F. Fry Memorial Library<br>1635 Ballenger Creek Pike, Point of Rocks, MD 21777</dd>
+        <dt>Calendar</dt>
+        <dd>Camping trips and outings are tracked in Scoutbook &mdash; sync the troop calendar to your phone via the ICS link there.</dd>
+        <dt>Scoutbook</dt>
+        <dd><a href="https://scoutbook.scouting.org/" target="_blank" rel="noopener">scoutbook.scouting.org</a></dd>
+      </dl>
+    </div>
+    <form class="note-form" onsubmit="handleSubmit(event)">
+      <label for="name">Name</label>
+      <input id="name" type="text" required>
+      <label for="email">Email</label>
+      <input id="email" type="email" required>
+      <label for="message">Message</label>
+      <textarea id="message" required></textarea>
+      <p class="fine" id="form-note">This form doesn't send automatically &mdash; it opens your email client addressed to the troop.</p>
+      <button class="btn" type="submit" style="border:none;cursor:pointer;">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer class="topo">
+  <div class="wrap">
+    <span>&copy; 2026 Troop 279, Scouts BSA &middot; Point of Rocks, MD</span>
+    <span>Chartered by the Point of Rocks Ruritan Club</span>
+  </div>
+</footer>
+
+<script src="../site.js"></script>
+<script>
+  function handleSubmit(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    var subject = encodeURIComponent('Message from ' + name + ' via troop website');
+    var body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+    window.location.href = 'mailto:portroop279@gmail.com?subject=' + subject + '&body=' + body;
+  }
+</script>
+
+</body>
+</html>
