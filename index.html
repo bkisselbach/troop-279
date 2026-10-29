@@ -292,15 +292,20 @@
   .wreaths .intro{max-width:60ch;}
   .wreaths .price-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    grid-template-columns:repeat(3,1fr);
     gap:2px;
     background:var(--ink);
     border:1px solid var(--ink);
-    margin:28px 0 24px;
+    margin:12px 0 28px;
   }
+  .wreaths h3{font-size:1.2rem;margin-top:28px;}
   .wreaths .price-card{
     background:var(--cream);
-    padding:24px;
+    padding:20px 24px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
   }
   .wreaths .price-card .size{font-size:14.5px;color:#655f4e;}
   .wreaths .price-card .price{
@@ -310,7 +315,42 @@
     color:var(--blaze);
     margin-top:4px;
   }
-  .wreaths .fine{font-size:13px;color:#655f4e;max-width:60ch;}
+  .wreaths .price-card label{font-size:12.5px;color:#655f4e;text-align:center;}
+  .wreaths .price-card input{
+    display:block;
+    width:64px;
+    margin-top:4px;
+    padding:8px;
+    border:1px solid rgba(0,0,0,.25);
+    border-radius:3px;
+    font-family:inherit;
+    font-size:16px;
+    text-align:center;
+    background:#fff;
+  }
+  .wreaths .details{max-width:60ch;margin:0 0 8px;}
+  .wreaths .details dt{font-weight:600;margin-top:12px;}
+  .wreaths .details dd{margin:2px 0 0;}
+  .wreaths .buyer{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:520px;}
+  .wreaths .buyer label{display:block;font-size:13px;margin-bottom:6px;color:#5c5848;}
+  .wreaths .buyer input{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid rgba(0,0,0,.15);
+    border-radius:3px;
+    font-family:inherit;
+    font-size:14.5px;
+    background:#fff;
+  }
+  .wreaths .total{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;margin:22px 0 12px;}
+  .wreaths button.btn{border:none;cursor:pointer;}
+  .wreaths button.btn:disabled{opacity:.5;cursor:not-allowed;}
+  .wreaths .closed{font-weight:600;color:var(--blaze);}
+  .wreaths .fine{font-size:13px;color:#655f4e;max-width:60ch;margin-top:16px;}
+  @media (max-width:760px){
+    .wreaths .price-grid{grid-template-columns:1fr;}
+    .wreaths .buyer{grid-template-columns:1fr;}
+  }
 
   /* Join / info strip */
   .strip.topo{padding:64px 0;}
@@ -400,7 +440,7 @@
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
       <a href="#gallery">Gallery</a>
-      <a href="#wreaths" class="hidden">Wreaths</a>
+      <a href="#wreaths">Wreaths</a>
       <a href="#join">Join</a>
       <a href="#contact">Contact</a>
       <a href="https://scoutbook.scouting.org/" target="_blank" rel="noopener">Scoutbook</a>
@@ -531,31 +571,91 @@
   </div>
 </section>
 
-<section class="wreaths hidden" id="wreaths">
+<section class="wreaths" id="wreaths">
   <div class="wrap">
     <div class="divider"></div>
     <h2>Annual wreath fundraiser</h2>
-    <p class="intro">Every fall Troop 279 sells fresh Fraser fir wreaths &mdash; proceeds go straight toward camping trips, gear, and program costs for our Scouts.</p>
-    <div class="price-grid">
-      <div class="price-card">
-        <div class="size">22&Prime; decorated</div>
-        <div class="price">$45</div>
+    <p class="intro">Every fall Troop 279 sells fresh Fraser fir wreaths from Mayne&rsquo;s Farm in Buckeystown &mdash; proceeds go straight toward camping trips, gear, and program costs for our Scouts.</p>
+    <dl class="details">
+      <dt>Order by</dt>
+      <dd>Friday, November 14, 2026</dd>
+      <dt>Pickup</dt>
+      <dd>Edward F. Fry Memorial Library, 1635 Ballenger Creek Pike, Point of Rocks<br>Plain wreaths: starting November 20 &middot; Decorated wreaths: date TBD<br>We&rsquo;ll be in touch with pickup times.</dd>
+    </dl>
+
+    <form id="wreath-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <h3>Plain</h3>
+      <div class="price-grid">
+        <div class="price-card">
+          <div>
+            <div class="size">16&Prime; plain</div>
+            <div class="price">$25</div>
+          </div>
+          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="16-inch plain wreath" data-price="25" aria-label="Quantity, 16-inch plain wreath"></label>
+        </div>
+        <div class="price-card">
+          <div>
+            <div class="size">20&Prime; plain</div>
+            <div class="price">$30</div>
+          </div>
+          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="20-inch plain wreath" data-price="30" aria-label="Quantity, 20-inch plain wreath"></label>
+        </div>
+        <div class="price-card">
+          <div>
+            <div class="size">24&Prime; plain</div>
+            <div class="price">$35</div>
+          </div>
+          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="24-inch plain wreath" data-price="35" aria-label="Quantity, 24-inch plain wreath"></label>
+        </div>
       </div>
-      <div class="price-card">
-        <div class="size">16&Prime; decorated</div>
-        <div class="price">$40</div>
+      <h3>Decorated</h3>
+      <div class="price-grid">
+        <div class="price-card">
+          <div>
+            <div class="size">16&Prime; decorated</div>
+            <div class="price">$35</div>
+          </div>
+          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="16-inch decorated wreath" data-price="35" aria-label="Quantity, 16-inch decorated wreath"></label>
+        </div>
+        <div class="price-card">
+          <div>
+            <div class="size">20&Prime; decorated</div>
+            <div class="price">$40</div>
+          </div>
+          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="20-inch decorated wreath" data-price="40" aria-label="Quantity, 20-inch decorated wreath"></label>
+        </div>
+        <div class="price-card">
+          <div>
+            <div class="size">24&Prime; decorated</div>
+            <div class="price">$45</div>
+          </div>
+          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="24-inch decorated wreath" data-price="45" aria-label="Quantity, 24-inch decorated wreath"></label>
+        </div>
       </div>
-      <div class="price-card">
-        <div class="size">22&Prime; plain</div>
-        <div class="price">$35</div>
+
+      <div class="buyer">
+        <div>
+          <label for="wreath-name">Name for pickup</label>
+          <input id="wreath-name" type="text" required autocomplete="name">
+        </div>
+        <div>
+          <label for="wreath-phone">Phone</label>
+          <input id="wreath-phone" type="tel" required autocomplete="tel">
+        </div>
       </div>
-      <div class="price-card">
-        <div class="size">16&Prime; plain</div>
-        <div class="price">$30</div>
-      </div>
-    </div>
-    <p class="fine">Prices reflect our most recent sale and availability varies by year &mdash; email us to check current stock and place an order.</p>
-    <a class="btn" href="mailto:portroop279@gmail.com?subject=Wreath%20order">Order a wreath</a>
+
+      <p class="total" aria-live="polite">Total: <span id="wreath-total">$0</span></p>
+      <p class="closed hidden" id="wreath-closed">Wreath orders for 2026 are closed &mdash; thank you for supporting Troop 279!</p>
+      <button class="btn" type="submit" id="wreath-submit" disabled>Pay with PayPal</button>
+
+      <input type="hidden" name="cmd" value="_cart">
+      <input type="hidden" name="upload" value="1">
+      <input type="hidden" name="business" value="bkisselbach@gmail.com">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="no_shipping" value="1">
+      <div id="wreath-items"></div>
+    </form>
+    <p class="fine">You&rsquo;ll check out securely on PayPal with a card or your PayPal account. Questions? Email <a href="mailto:portroop279@gmail.com?subject=Wreath%20order">portroop279@gmail.com</a>.</p>
   </div>
 </section>
 
@@ -690,6 +790,56 @@
       e.preventDefault();
       lbButtons[next].focus();
     }
+  });
+  var wreathForm = document.getElementById('wreath-form');
+  var wreathQtys = Array.prototype.slice.call(wreathForm.querySelectorAll('input[data-item]'));
+  var wreathSubmit = document.getElementById('wreath-submit');
+  var wreathOpen = new Date() < new Date(2026, 10, 15); // orders close at the end of Nov 14
+
+  function wreathQty(input){
+    var n = parseInt(input.value, 10);
+    return n > 0 ? n : 0;
+  }
+  function updateWreathTotal(){
+    var total = wreathQtys.reduce(function(sum, input){
+      return sum + wreathQty(input) * Number(input.dataset.price);
+    }, 0);
+    document.getElementById('wreath-total').textContent = '$' + total;
+    wreathSubmit.disabled = !wreathOpen || total === 0;
+  }
+
+  if (!wreathOpen) {
+    document.getElementById('wreath-closed').classList.remove('hidden');
+    wreathQtys.forEach(function(input){ input.disabled = true; });
+  }
+  wreathQtys.forEach(function(input){ input.addEventListener('input', updateWreathTotal); });
+  updateWreathTotal();
+
+  // Build PayPal cart fields from the quantities right before submitting
+  wreathForm.addEventListener('submit', function(){
+    var page = location.href.split('#')[0];
+    var fields = {
+      custom: ('Pickup: ' + document.getElementById('wreath-name').value + ', ' + document.getElementById('wreath-phone').value).slice(0, 255),
+      'return': page + '#wreaths',
+      cancel_return: page + '#wreaths'
+    };
+    var n = 0;
+    wreathQtys.forEach(function(input){
+      if (!wreathQty(input)) return;
+      n++;
+      fields['item_name_' + n] = input.dataset.item;
+      fields['amount_' + n] = input.dataset.price;
+      fields['quantity_' + n] = wreathQty(input);
+    });
+    var items = document.getElementById('wreath-items');
+    items.innerHTML = '';
+    Object.keys(fields).forEach(function(name){
+      var f = document.createElement('input');
+      f.type = 'hidden';
+      f.name = name;
+      f.value = fields[name];
+      items.appendChild(f);
+    });
   });
 </script>
 
