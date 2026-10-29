@@ -59,7 +59,7 @@
       </dl>
     </div>
 
-    <form id="wreath-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <div class="wreath-prices">
       <h3>Plain</h3>
       <div class="price-grid">
         <div class="price-card">
@@ -67,21 +67,18 @@
             <div class="size">16&Prime; plain</div>
             <div class="price">$25</div>
           </div>
-          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="16-inch plain wreath" data-price="25" aria-label="Quantity, 16-inch plain wreath"></label>
         </div>
         <div class="price-card">
           <div>
             <div class="size">20&Prime; plain</div>
             <div class="price">$30</div>
           </div>
-          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="20-inch plain wreath" data-price="30" aria-label="Quantity, 20-inch plain wreath"></label>
         </div>
         <div class="price-card">
           <div>
             <div class="size">24&Prime; plain</div>
             <div class="price">$35</div>
           </div>
-          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="24-inch plain wreath" data-price="35" aria-label="Quantity, 24-inch plain wreath"></label>
         </div>
       </div>
       <h3>Decorated</h3>
@@ -91,47 +88,25 @@
             <div class="size">16&Prime; decorated</div>
             <div class="price">$35</div>
           </div>
-          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="16-inch decorated wreath" data-price="35" aria-label="Quantity, 16-inch decorated wreath"></label>
         </div>
         <div class="price-card">
           <div>
             <div class="size">20&Prime; decorated</div>
             <div class="price">$40</div>
           </div>
-          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="20-inch decorated wreath" data-price="40" aria-label="Quantity, 20-inch decorated wreath"></label>
         </div>
         <div class="price-card">
           <div>
             <div class="size">24&Prime; decorated</div>
             <div class="price">$45</div>
           </div>
-          <label>Qty<input type="number" min="0" max="50" value="0" inputmode="numeric" data-item="24-inch decorated wreath" data-price="45" aria-label="Quantity, 24-inch decorated wreath"></label>
         </div>
       </div>
+    </div>
 
-      <div class="buyer">
-        <div>
-          <label for="wreath-name">Name for pickup</label>
-          <input id="wreath-name" type="text" required autocomplete="name">
-        </div>
-        <div>
-          <label for="wreath-phone">Phone</label>
-          <input id="wreath-phone" type="tel" required autocomplete="tel">
-        </div>
-      </div>
-
-      <p class="total" aria-live="polite">Total: <span id="wreath-total">$0</span></p>
-      <p class="closed hidden" id="wreath-closed">Wreath orders for 2026 are closed &mdash; thank you for supporting Troop 279!</p>
-      <button class="btn" type="submit" id="wreath-submit" disabled>Pay with PayPal</button>
-
-      <input type="hidden" name="cmd" value="_cart">
-      <input type="hidden" name="upload" value="1">
-      <input type="hidden" name="business" value="bkisselbach@gmail.com">
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="hidden" name="no_shipping" value="1">
-      <div id="wreath-items"></div>
-    </form>
-    <p class="fine">You&rsquo;ll check out securely on PayPal with a card or your PayPal account. Questions? Email <a href="mailto:portroop279@gmail.com?subject=Wreath%20order">portroop279@gmail.com</a>.</p>
+    <p class="closed hidden" id="wreath-closed">Wreath orders for 2026 are closed &mdash; thank you for supporting Troop 279!</p>
+    <a class="btn" id="wreath-order" href="https://bsa-troop-279.square.site/" target="_blank" rel="noopener">Order online</a>
+    <p class="fine">Orders are taken through our Square store &mdash; pay securely by card. Questions? Email <a href="mailto:portroop279@gmail.com?subject=Wreath%20order">portroop279@gmail.com</a>.</p>
     <p class="intro">Thank you for supporting our Scouts this holiday season. Yours in Scouting, Troop&nbsp;279.</p>
   </div>
 </section>
@@ -145,56 +120,11 @@
 
 <script src="../site.js"></script>
 <script>
-  var wreathForm = document.getElementById('wreath-form');
-  var wreathQtys = Array.prototype.slice.call(wreathForm.querySelectorAll('input[data-item]'));
-  var wreathSubmit = document.getElementById('wreath-submit');
-  var wreathOpen = new Date() < new Date(2026, 10, 15); // orders close at the end of Nov 14
-
-  function wreathQty(input){
-    var n = parseInt(input.value, 10);
-    return n > 0 ? n : 0;
-  }
-  function updateWreathTotal(){
-    var total = wreathQtys.reduce(function(sum, input){
-      return sum + wreathQty(input) * Number(input.dataset.price);
-    }, 0);
-    document.getElementById('wreath-total').textContent = '$' + total;
-    wreathSubmit.disabled = !wreathOpen || total === 0;
-  }
-
-  if (!wreathOpen) {
+  // Orders close at the end of Nov 14
+  if (new Date() >= new Date(2026, 10, 15)) {
     document.getElementById('wreath-closed').classList.remove('hidden');
-    wreathQtys.forEach(function(input){ input.disabled = true; });
+    document.getElementById('wreath-order').classList.add('hidden');
   }
-  wreathQtys.forEach(function(input){ input.addEventListener('input', updateWreathTotal); });
-  updateWreathTotal();
-
-  // Build PayPal cart fields from the quantities right before submitting
-  wreathForm.addEventListener('submit', function(){
-    var page = location.href.split('#')[0];
-    var fields = {
-      custom: ('Pickup: ' + document.getElementById('wreath-name').value + ', ' + document.getElementById('wreath-phone').value).slice(0, 255),
-      'return': page,
-      cancel_return: page
-    };
-    var n = 0;
-    wreathQtys.forEach(function(input){
-      if (!wreathQty(input)) return;
-      n++;
-      fields['item_name_' + n] = input.dataset.item;
-      fields['amount_' + n] = input.dataset.price;
-      fields['quantity_' + n] = wreathQty(input);
-    });
-    var items = document.getElementById('wreath-items');
-    items.innerHTML = '';
-    Object.keys(fields).forEach(function(name){
-      var f = document.createElement('input');
-      f.type = 'hidden';
-      f.name = name;
-      f.value = fields[name];
-      items.appendChild(f);
-    });
-  });
 </script>
 
 </body>

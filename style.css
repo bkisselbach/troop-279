@@ -306,19 +306,6 @@ nav.links a:hover,nav.links a[aria-current="page"]{border-bottom-color:var(--kha
   color:var(--blaze);
   margin-top:4px;
 }
-.wreaths .price-card label{font-size:12.5px;color:#655f4e;text-align:center;}
-.wreaths .price-card input{
-  display:block;
-  width:64px;
-  margin-top:4px;
-  padding:8px;
-  border:1px solid rgba(0,0,0,.25);
-  border-radius:3px;
-  font-family:inherit;
-  font-size:16px;
-  text-align:center;
-  background:#fff;
-}
 .wreaths .details{
   margin:0;
   padding:4px 24px 20px;
@@ -328,26 +315,12 @@ nav.links a:hover,nav.links a[aria-current="page"]{border-bottom-color:var(--kha
 }
 .wreaths .details dt{font-weight:600;margin-top:16px;}
 .wreaths .details dd{margin:2px 0 0;}
-.wreaths .buyer{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:520px;}
-.wreaths .buyer label{display:block;font-size:13px;margin-bottom:6px;color:#5c5848;}
-.wreaths .buyer input{
-  width:100%;
-  padding:10px 12px;
-  border:1px solid rgba(0,0,0,.15);
-  border-radius:3px;
-  font-family:inherit;
-  font-size:14.5px;
-  background:#fff;
-}
-.wreaths .total{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;margin:22px 0 12px;}
-.wreaths button.btn{border:none;cursor:pointer;}
-.wreaths button.btn:disabled{opacity:.5;cursor:not-allowed;}
 .wreaths .closed{font-weight:600;color:var(--blaze);}
+.wreaths #wreath-order{font-size:16px;padding:12px 28px;}
 .wreaths .fine{font-size:13px;color:#655f4e;margin-top:16px;}
 @media (max-width:760px){
   .wreaths .wreath-top{grid-template-columns:1fr;}
   .wreaths .price-grid{grid-template-columns:1fr;}
-  .wreaths .buyer{grid-template-columns:1fr;}
 }
 
 /* Join / info strip */
