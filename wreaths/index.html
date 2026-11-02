@@ -50,6 +50,7 @@
       <div>
         <p class="intro">Our Christmas wreath sale is back! Fresh Fraser fir wreaths come in three sizes, decorated or plain &mdash; whether you like ornaments and ribbon or a simple, traditional look, there&rsquo;s one for your door.</p>
         <p class="intro">All proceeds go directly to our troop, paying for the camping trips, gear, and leadership training that give Point of Rocks Scouts real outdoor experience.</p>
+        <a class="btn wreath-order" href="https://bsa-troop-279.square.site/" target="_blank" rel="noopener">Order online</a>
       </div>
       <dl class="details">
         <dt>Order by</dt>
@@ -138,7 +139,7 @@
     </div>
 
     <p class="closed hidden" id="wreath-closed">Wreath orders for 2026 are closed &mdash; thank you for supporting Troop 279!</p>
-    <a class="btn" id="wreath-order" href="https://bsa-troop-279.square.site/" target="_blank" rel="noopener">Order online</a>
+    <a class="btn wreath-order" id="wreath-order" href="https://bsa-troop-279.square.site/" target="_blank" rel="noopener">Order online</a>
     <p class="fine">Orders are taken through our Square store &mdash; pay securely by card. Questions? Email <a href="mailto:portroop279@gmail.com?subject=Wreath%20order">portroop279@gmail.com</a>.</p>
     <p class="intro">Thank you for supporting our Scouts this holiday season. Yours in Scouting, Troop&nbsp;279.</p>
   </div>
@@ -156,7 +157,7 @@
   // Orders close at the end of Nov 14
   if (new Date() >= new Date(2026, 10, 15)) {
     document.getElementById('wreath-closed').classList.remove('hidden');
-    document.getElementById('wreath-order').classList.add('hidden');
+    document.querySelectorAll('.wreath-order').forEach(function(a){ a.classList.add('hidden'); });
   }
 </script>
 

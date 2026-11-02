@@ -340,7 +340,7 @@ nav.links a:hover,nav.links a[aria-current="page"]{border-bottom-color:var(--kha
   border-radius:3px;
 }
 .wreaths .closed{font-weight:600;color:var(--blaze);}
-.wreaths #wreath-order{font-size:16px;padding:12px 28px;}
+.wreaths .wreath-order{font-size:16px;padding:12px 28px;}
 .wreaths .fine{font-size:13px;color:#655f4e;margin-top:16px;}
 @media (max-width:760px){
   .wreaths .wreath-top{grid-template-columns:1fr;}
