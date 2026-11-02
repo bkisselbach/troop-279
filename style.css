@@ -315,11 +315,36 @@ nav.links a:hover,nav.links a[aria-current="page"]{border-bottom-color:var(--kha
 }
 .wreaths .details dt{font-weight:600;margin-top:16px;}
 .wreaths .details dd{margin:2px 0 0;}
+.wreaths .wreath-photos{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:12px 0 0;
+}
+.wreaths .wreath-photos figure{margin:0;position:relative;}
+.wreaths .wreath-photos img{
+  width:100%;
+  height:auto;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:3px;
+}
+.wreaths .wreath-photos figcaption{
+  position:absolute;
+  left:8px;
+  bottom:8px;
+  background:rgba(20,31,23,.8);
+  color:var(--cream);
+  font-size:12.5px;
+  padding:3px 8px;
+  border-radius:3px;
+}
 .wreaths .closed{font-weight:600;color:var(--blaze);}
 .wreaths #wreath-order{font-size:16px;padding:12px 28px;}
 .wreaths .fine{font-size:13px;color:#655f4e;margin-top:16px;}
 @media (max-width:760px){
   .wreaths .wreath-top{grid-template-columns:1fr;}
+  .wreaths .wreath-photos{grid-template-columns:repeat(2,1fr);}
   .wreaths .price-grid{grid-template-columns:1fr;}
 }
 
