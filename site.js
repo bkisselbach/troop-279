@@ -10,3 +10,8 @@ navLinks.querySelectorAll('a').forEach(function(a){
     navToggle.setAttribute('aria-expanded', 'false');
   });
 });
+
+// Wreath sale banner and hero come down once orders close at the end of Nov 14
+if (new Date() >= new Date(2026, 10, 15)) {
+  document.querySelectorAll('[data-sale-only]').forEach(function(el){ el.classList.add('hidden'); });
+}

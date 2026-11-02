@@ -126,6 +126,38 @@ nav.links a:hover,nav.links a[aria-current="page"]{border-bottom-color:var(--kha
 }
 .hero .meet-info div span{display:block;color:var(--khaki);font-size:12.5px;margin-bottom:4px;}
 
+/* Wreath sale */
+.sale-banner{
+  display:block;
+  background:var(--blaze);
+  color:var(--cream);
+  text-align:center;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  padding:8px 16px;
+}
+.sale-banner span{margin-left:10px;text-decoration:underline;text-underline-offset:3px;}
+.sale-banner:hover{background:#a8431f;}
+.wreath-hero{padding:48px 0;}
+.wreath-hero .cols{
+  display:grid;
+  grid-template-columns:3fr 2fr;
+  gap:40px;
+  align-items:center;
+}
+.wreath-hero .kicker{color:var(--khaki);font-size:13.5px;margin-bottom:12px;}
+.wreath-hero h2{font-size:clamp(2rem,4vw,3rem);color:var(--cream);}
+.wreath-hero .lede{max-width:52ch;font-size:1.05rem;color:var(--khaki);margin:16px 0 12px;}
+.wreath-hero .deadline{font-weight:600;color:var(--cream);margin:0 0 22px;}
+.wreath-hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+.wreath-hero img{
+  width:100%;
+  max-height:420px;
+  object-fit:cover;
+  border-radius:4px;
+}
+
 /* Stats */
 .stats{
   background:var(--cream);
@@ -404,6 +436,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
 @media (max-width:760px){
   .about .cols, .strip .cols, .contact .cols{grid-template-columns:1fr;}
   .page-head .page-logo{width:150px;}
+  .wreath-hero .cols{grid-template-columns:1fr;}
+  .wreath-hero img{max-height:260px;order:-1;}
+  .sale-banner span{display:block;margin:2px 0 0;}
   .brand-sub{display:none;}
   .brand-logo{padding:5px 8px;}
   .brand-logo img{height:28px;}
