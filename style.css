@@ -370,7 +370,7 @@ nav.links a:hover,nav.links a[aria-current="page"]{border-bottom-color:var(--kha
 }
 .contact h2{font-size:2rem;}
 .contact dl{margin:26px 0 0;}
-.contact dt{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#655f4e;margin-top:18px;}
+.contact dt{font-weight:600;margin-top:18px;}
 .contact dt:first-child{margin-top:0;}
 .contact dd{margin:4px 0 0;font-size:1.05rem;}
 .contact a{text-decoration:underline;text-decoration-color:var(--khaki);text-underline-offset:3px;}
