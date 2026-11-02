@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Troop 279 Christmas Wreath Sale Flyer</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page{size:letter;margin:0;}
+  :root{
+    --pine:#1f2e22;
+    --pine-deep:#141f17;
+    --blaze:#bf4c2c;
+    --cream:#f4efe3;
+    --ink:#2a271f;
+    --muted:#655f4e;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:#fff;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:8.5in;
+    height:11in;
+    padding:0.45in 0.6in 0.4in;
+    display:flex;
+    flex-direction:column;
+  }
+  h1,h2{font-family:'Fraunces',serif;margin:0;letter-spacing:-0.01em;}
+
+  .top{display:flex;align-items:center;justify-content:space-between;}
+  .top img{height:0.75in;}
+  .top .troop{text-align:right;font-size:13pt;line-height:1.3;}
+  .top .troop strong{display:block;font-family:'Fraunces',serif;font-size:20pt;}
+
+  .title{margin:0.22in 0 0;}
+  .title h1{font-size:42pt;line-height:1.02;color:var(--pine-deep);}
+  .title p{font-size:14pt;margin:0.1in 0 0;color:var(--muted);}
+
+  .photos{
+    display:grid;
+    grid-template-columns:1.25fr 1fr 1fr;
+    gap:0.12in;
+    grid-template-rows:2.4in;
+    margin:0.18in 0;
+  }
+  .photos img{width:100%;height:2.4in;object-fit:cover;border-radius:4px;display:block;}
+
+  .prices{display:grid;grid-template-columns:1fr 1fr;gap:0.2in;}
+  .prices div{border:1.5px solid var(--pine-deep);border-radius:4px;padding:0.14in 0.18in;}
+  .prices h2{font-size:17pt;color:var(--pine-deep);}
+  .prices p{margin:0.03in 0 0.08in;font-size:10.5pt;color:var(--muted);}
+  .prices table{width:100%;border-collapse:collapse;font-size:13pt;}
+  .prices td{padding:0.03in 0;}
+  .prices td:last-child{text-align:right;font-family:'Fraunces',serif;font-weight:700;color:var(--blaze);font-size:15pt;}
+
+  .details{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0.08in 0.25in;
+    margin:0.18in 0 0.2in;
+    font-size:11.5pt;
+    line-height:1.4;
+  }
+  .details strong{display:block;font-size:10pt;text-transform:none;color:var(--pine-deep);}
+  .deadline{
+    grid-column:1 / -1;
+    background:var(--blaze);
+    color:#fff;
+    font-weight:600;
+    font-size:15pt;
+    text-align:center;
+    padding:0.08in;
+    border-radius:4px;
+    margin-bottom:0.06in;
+  }
+
+  .order{
+    margin-top:auto;
+    display:flex;
+    align-items:center;
+    gap:0.3in;
+    background:var(--pine-deep);
+    color:var(--cream);
+    border-radius:6px;
+    padding:0.18in 0.26in;
+  }
+  .order .qr{width:1.45in;height:1.45in;background:#fff;padding:0.06in;border-radius:4px;flex-shrink:0;}
+  .order .qr svg{width:100%;height:100%;display:block;}
+  .order h2{font-size:15pt;color:var(--cream);}
+  .order .url{font-family:'Fraunces',serif;font-size:28pt;font-weight:700;color:#fff;margin:0.02in 0 0.06in;}
+  .order p{margin:0;font-size:10.5pt;color:#cdbe98;}
+  .scout{margin-top:0.12in !important;font-size:11pt !important;color:var(--cream) !important;}
+  .scout span{display:inline-block;border-bottom:1.5px solid var(--cream);width:2.3in;margin-left:0.06in;}
+
+  .foot{margin-top:0.12in;display:flex;justify-content:space-between;font-size:9.5pt;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <img src="../../images/scouts-bsa-horizontal.png" alt="Scouts BSA">
+    <div class="troop"><strong>Troop 279</strong>Point of Rocks, MD</div>
+  </div>
+
+  <div class="title">
+    <h1>Christmas Wreath Sale</h1>
+    <p>Fresh Fraser fir wreaths. All proceeds support our Scouts.</p>
+  </div>
+
+  <div class="photos">
+    <img src="../../photos/wreaths/decorated-4.jpg" alt="">
+    <img src="../../photos/wreaths/decorated-1.jpg" alt="">
+    <img src="../../photos/wreaths/plain-1.jpg" alt="">
+  </div>
+
+  <div class="prices">
+    <div>
+      <h2>Plain</h2>
+      <p>A classic, traditional look</p>
+      <table>
+        <tr><td>16&Prime;</td><td>$25</td></tr>
+        <tr><td>20&Prime;</td><td>$30</td></tr>
+        <tr><td>24&Prime;</td><td>$35</td></tr>
+      </table>
+    </div>
+    <div>
+      <h2>Decorated</h2>
+      <p>Hand-decorated, so every one is unique</p>
+      <table>
+        <tr><td>16&Prime;</td><td>$35</td></tr>
+        <tr><td>20&Prime;</td><td>$40</td></tr>
+        <tr><td>24&Prime;</td><td>$45</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="details">
+    <div class="deadline">Order by Friday, November 14</div>
+    <div><strong>Pickup</strong>Edward F. Fry Memorial Library<br>1635 Ballenger Creek Pike, Point of Rocks</div>
+    <div><strong>Free Delivery</strong>Within 20 miles of the library<br>Pickup and delivery dates coming soon</div>
+  </div>
+
+  <div class="order">
+    <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 27" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h27v27H0z"/><path stroke="#141f17" d="M1 1.5h7m1 0h1m3 0h1m1 0h1m1 0h1m1 0h7M1 2.5h1m5 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m2 0h1m2 0h2m1 0h1m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h4m2 0h1m3 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m3 0h1m1 0h2m4 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M12 8.5h3m1 0h2M1 9.5h1m2 0h8m1 0h1m1 0h2m1 0h1m2 0h1m1 0h3M1 10.5h1m6 0h2m4 0h5m1 0h5M3 11.5h5m2 0h2m2 0h1m1 0h1m1 0h2m1 0h2m2 0h1M2 12.5h1m2 0h2m1 0h1m1 0h3m2 0h4m1 0h1m1 0h4M1 13.5h1m2 0h1m2 0h2m1 0h2m1 0h1m2 0h1m2 0h1m5 0h1M1 14.5h1m1 0h1m1 0h1m2 0h3m4 0h2m4 0h1m2 0h1M1 15.5h7m3 0h6m1 0h1m2 0h5M1 16.5h1m1 0h1m1 0h1m4 0h1m1 0h1m5 0h1m1 0h1m1 0h2m1 0h1M1 17.5h1m1 0h1m2 0h2m1 0h1m5 0h1m1 0h5m1 0h2M9 18.5h1m2 0h3m2 0h1m3 0h1m1 0h2M1 19.5h7m1 0h4m4 0h1m1 0h1m1 0h1m3 0h1M1 20.5h1m5 0h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h1m2 0h2M1 21.5h1m1 0h3m1 0h1m1 0h2m2 0h9m2 0h2M1 22.5h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h3m4 0h2M1 23.5h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h2m1 0h1m2 0h5M1 24.5h1m5 0h1m7 0h2m3 0h2m1 0h3M1 25.5h7m1 0h1m1 0h1m2 0h2m1 0h1m4 0h1m2 0h1"/></svg></div>
+    <div>
+      <h2>Scan to Order Online</h2>
+      <div class="url">troop-279.com</div>
+      <p>Pay by card, Apple Pay, or Google Pay.</p>
+      <p class="scout">Supporting a Scout? Enter their name at checkout:<span></span></p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Questions? portroop279@gmail.com</span>
+    <span>Photos show wreaths from past years.</span>
+  </div>
+</div>
+</body>
+</html>
