@@ -18,7 +18,4 @@ document.addEventListener('keydown', function(e){
   }
 });
 
-// Wreath sale banner and hero come down once orders close at the end of Nov 14
-if (new Date() >= new Date(2026, 10, 15)) {
-  document.querySelectorAll('[data-sale-only]').forEach(function(el){ el.classList.add('hidden'); });
-}
+// Square manages availability for the limited wreath sale.
